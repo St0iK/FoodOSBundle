@@ -1,0 +1,49 @@
+<!-- app/Resources/views/base.html.twig -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>FoodOS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/foodos/css/styles.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/foodos/css/lumen-boostrap.css') }}" type="text/css" rel="stylesheet" />
+    {% endblock %}
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('bundles/foodos/js/html5shiv.js') }}"></script>
+    <script src="{{ asset('bundles/foodos/js/respond.min.js') }}"></script>
+    <![endif]-->
+</head>
+<body>
+{% block navigation %}
+{% endblock navigation %}
+
+<div class="container">
+    <div class="page-header" id="banner" style="margin-top: 70px;">
+        <div class="row">
+            <div class="col-lg-12">
+                {% block main %}
+                {% endblock main %}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Made by St0iK</p>
+            </div>
+        </div>
+
+    </footer>
+
+    </div>
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{{ asset('bundles/foodos/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/foodos/js/script.js') }}"></script>
+{% endblock %}
+</body>
+</html>

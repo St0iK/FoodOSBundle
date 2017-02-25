@@ -1,0 +1,3 @@
+foodos_homepage:
+    path:     /
+    defaults: { _controller: FoodosBundle:Default:index }

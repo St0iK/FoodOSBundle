@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block navigation %}
+    Test
+    {{ include('@Foodos/_partials/navigation.html.twig') }}
+{% endblock navigation %}
+
+{% block main %}
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+{% endblock main %}
+
+
