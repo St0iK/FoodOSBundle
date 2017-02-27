@@ -78,3 +78,17 @@ fos_user:
     from_email:
           address: noreply@example.com
           sender_name: FoodOS Platform
+
+easy_admin:
+    entities:
+        User:
+            class: St0iK\FoodosBundle\Entity\User
+            edit:
+                fields: ['username', 'email', 'enabled']
+            new:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email', type: 'email', label: 'E-mail address' }
+                    - { property: 'plainPassword', type: 'password' }
+                    - { property: 'enabled'}
+                    - { property: 'roles'}
