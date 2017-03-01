@@ -39,7 +39,7 @@ class UserFixtures extends AbstractFixture implements ContainerAwareInterface
         $simpleUser = new User();
         $simpleUser->setUsername('jim_user');
         $simpleUser->setEmail('jstoikidis+simple@gmail.com');
-        $stoikAdmin->setEnabled(true);
+        $simpleUser->setEnabled(true);
         $encodedPassword = $passwordEncoder->encodePassword($simpleUser, '123123123');
         $simpleUser->setPassword($encodedPassword);
         $manager->persist($simpleUser);
