@@ -1,3 +1,17 @@
 foodos_homepage:
-    path:     /
+    path: /
     defaults: { _controller: FoodosBundle:Default:index }
+
+
+
+foodos_fbackend_admin_index:
+    path: /backend
+    defaults: { _controller: FoodosBundle:Admin/Default:index }
+
+foodos_backend_login:
+    path: /backend/login
+    defaults: { _controller: FoodosBundle:Admin/Security:login }
+
+foodos_backend_login_check:
+    path: /backend/login_check
+    defaults: { _controller: FoodosBundle:Admin/Security:loginCheck }

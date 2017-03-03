@@ -11,24 +11,25 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-      admin_secured_area:
-        pattern:   ^/foodosbackend
-          anonymous: ~
-          form_login:
-            provider: fos_userbundle
-            login_path: /foodosbackend/login
-            check_path: /foodosbackend/login_check
-            default_target_path: /foodosbackend
-      main:
-        pattern: ^/
-          form_login:
-            provider: fos_userbundle
+        admin_secured_area:
+            pattern:   ^/backend
+            anonymous: ~
+            form_login:
+                provider: fos_userbundle
+                login_path: foodos_backend_login
+                check_path: foodos_backend_login_check
+                default_target_path: /backebd
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
                 csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
             logout:       true
-            anonymous:    true
+            anonymous:    ~
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/foodosbackend, role: ROLE_ADMIN }
+        - { path: ^/backend/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/backend, role: ROLE_ADMIN }
