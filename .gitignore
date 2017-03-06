@@ -12,3 +12,5 @@
 /composer.phar
 .idea/
 composer.lock
+.DS_Store
+/web/assets/vendors
