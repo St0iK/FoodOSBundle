@@ -14,6 +14,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-       echo "Index called";exit;
+        return $this->render('@Foodos/Default/index.html.twig');
     }
 }

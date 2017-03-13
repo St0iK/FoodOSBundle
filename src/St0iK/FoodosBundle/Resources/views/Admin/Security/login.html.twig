@@ -1,5 +1,4 @@
-{% extends "@Foodos/layout.html.twig" %}
-
-{% block fos_user_content %}
-    {{ include('@FOSUser/Security/login_content.html.twig') }}
-{% endblock fos_user_content %}
+{% extends "@Foodos/Admin/layout.html.twig" %}
+{% block main %}
+    {{ include('@Foodos/Admin/Security/login_content.html.twig') }}
+{% endblock main %}
