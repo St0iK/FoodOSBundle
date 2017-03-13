@@ -18,7 +18,7 @@ security:
                 provider: fos_userbundle
                 login_path: foodos_backend_login
                 check_path: foodos_backend_login_check
-                default_target_path: /backebd
+                default_target_path: /backend
         main:
             pattern: ^/
             form_login:
