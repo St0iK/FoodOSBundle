@@ -1,4 +1,5 @@
 {% extends "@Foodos/Admin/layout.html.twig" %}
+{% block body_class %}login{% endblock body_class %}
 {% block main %}
     {{ include('@Foodos/Admin/Security/login_content.html.twig') }}
 {% endblock main %}
