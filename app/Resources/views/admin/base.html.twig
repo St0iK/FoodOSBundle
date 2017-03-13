@@ -20,9 +20,10 @@
     {% endblock stylesheets %}
 
 </head>
-{% block main %}
-<body class="login">
 
-</body>
+<body class="{% block body_class %}{% endblock body_class %}">
+{% block main %}
 {% endblock main %}
+</body>
+
 </html>
