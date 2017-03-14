@@ -21,9 +21,9 @@ class Product
     /**
      * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Category", inversedBy="products", fetch="EAGER")
      * @ORM\JoinTable(
-     *     name="ProductCategory",
-     *     joinColumns={@ORM\JoinColumn(name="Product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="Category_id", referencedColumnName="id")}
+     *     name="product_category",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      * )
      *
      */
