@@ -19,10 +19,17 @@ use Pagerfanta\Pagerfanta;
 
 class CategoryRepository extends EntityRepository
 {
-
+    /**
+     * @return mixed
+     */
     public function findAllSortedByWeight()
     {
-        return $this->findBy(array(), array('weight' => 'ASC'));
+        return $this->createQueryBuilder('cat')
+            ->orderBy('cat.weight')
+            ->leftJoin('cat.products', 'pr')
+            ->addSelect('pr')
+            ->getQuery()
+            ->execute();
     }
 
 }

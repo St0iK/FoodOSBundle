@@ -19,7 +19,7 @@ class Product
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Category", inversedBy="products", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Category", inversedBy="products")
      * @ORM\JoinTable(
      *     name="product_category",
      *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},

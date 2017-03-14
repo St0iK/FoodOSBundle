@@ -4,9 +4,17 @@ foodos_homepage:
 
 
 
-foodos_fbackend_admin_index:
+foodos_backend_admin_index:
     path: /backend
     defaults: { _controller: FoodosBundle:Admin/Default:index }
+
+foodos_backend_admin_catalog:
+    path: /backend/catalog
+    defaults: { _controller: FoodosBundle:Admin/Default:catalog }
+
+foodos_backend_admin_ajax_category_add:
+    path: /backend/catalog/ajaxCategoryAdd
+    defaults: { _controller: FoodosBundle:Admin/Default:ajaxCategoryAdd }
 
 foodos_backend_login:
     path: /backend/login

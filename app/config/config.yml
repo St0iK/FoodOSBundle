@@ -79,17 +79,15 @@ fos_user:
           address: noreply@example.com
           sender_name: FoodOS Platform
 
-# Disable Easy admin, we gonna do it manually
-#easy_admin:
-#    entities:
-#        User:
-#            class: St0iK\FoodosBundle\Entity\User
-#            edit:
-#                fields: ['username', 'email', 'enabled']
-#            new:
-#                fields:
-#                    - { property: 'username' }
-#                    - { property: 'email', type: 'email', label: 'E-mail address' }
-#                    - { property: 'plainPassword', type: 'password' }
-#                    - { property: 'enabled'}
-#                    - { property: 'roles'}
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true

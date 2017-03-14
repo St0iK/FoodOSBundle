@@ -5061,7 +5061,6 @@ if (typeof NProgress != 'undefined') {
 		init_CustomNotification();
 		init_autosize();
 		init_autocomplete();
-				
-	});	
-	
+
+	});
 

@@ -64,4 +64,12 @@ class User extends BaseUser
     {
         return $this->last_name;
     }
+
+    /**
+     * Returns the full name of a user
+     */
+    public function getFullName()
+    {
+        return ucfirst($this->first_name) . " " . ucfirst($this->last_name);
+    }
 }

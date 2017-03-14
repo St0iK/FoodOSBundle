@@ -1,0 +1,90 @@
+{% extends '@Foodos/Admin/main.layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{  asset('assets/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
+    <link href="{{  asset('assets/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+    <link href="{{  asset('assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+    <link href="{{  asset('assets/vendors/jqvmap/dist/jqvmap.min.css"') }} rel="stylesheet"/>
+    <link href="{{  asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+{%  endblock stylesheets %}
+{% block body_class %}nav-md{% endblock body_class %}
+
+
+{% block main %}
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Manage Catalog</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><i class="fa fa-bars"></i> Categories <small>Manage Categories</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="x_content">
+                        <ul class="catalog-categories list-unstyled msg_list">
+                            <li><a data-toggle="modal" data-target=".bs-example-modal-lg">
+                                      <span><span>New Category</span></span>
+                                      <span class="message">Add a new category into the catalog</span>
+                                </a>
+                            </li>
+                            {% for category in categories %}
+                                <li>
+                                    <a>
+                                      <span>
+                                          <span>{{ category.title }}</span>
+                                          <span class="time">{{ category.products|length }}</span>
+                                      </span>
+                                        <span class="message">{{ category.description }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bars"></i> Tabs <small>Float left</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">Content</div>
+            </div>
+        </div>
+        </div>
+
+        </div>
+    </div>
+
+    {{ include('@Foodos/Admin/_partials/category_modal.html.twig') }}
+
+
+{% endblock main %}
+
+
+

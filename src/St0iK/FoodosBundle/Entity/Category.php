@@ -19,7 +19,7 @@ class Category
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Product", mappedBy="categories", fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Product", mappedBy="categories")
      *
      */
     protected $products;
