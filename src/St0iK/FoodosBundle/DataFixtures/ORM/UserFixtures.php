@@ -25,6 +25,8 @@ class UserFixtures extends AbstractFixture implements ContainerAwareInterface
 
         $stoikAdmin = new User();
         $stoikAdmin->setUsername('stoik_admin');
+        $stoikAdmin->setFirstName('Dimitris');
+        $stoikAdmin->setLastName('Adminidis');
         $stoikAdmin->setEmail('jstoikidis+symfony@gmail.com');
         $stoikAdmin->setRoles(['ROLE_ADMIN']);
         $stoikAdmin->setEnabled(true);
@@ -38,6 +40,8 @@ class UserFixtures extends AbstractFixture implements ContainerAwareInterface
 
         $simpleUser = new User();
         $simpleUser->setUsername('jim_user');
+        $simpleUser->setFirstName('Dimitris');
+        $simpleUser->setLastName('Aplouseridis');
         $simpleUser->setEmail('jstoikidis+simple@gmail.com');
         $simpleUser->setEnabled(true);
         $encodedPassword = $passwordEncoder->encodePassword($simpleUser, '123123123');
