@@ -1,0 +1,27 @@
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>FoodOS</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+            <div class="profile_pic">
+                <img src="https://avatars3.githubusercontent.com/u/497785?v=3&u=4374c5c76df1ffa285232340512dce4d8d3b2dcb&s=400" alt="..." class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>{{ app.user.firstName }}</h2>
+            </div>
+        </div>
+        <!-- /menu profile quick info -->
+
+        <br />
+
+        {{ include('@Foodos/Admin/_partials/sidebar.html.twig') }}
+        {{ include('@Foodos/Admin/_partials/footer_buttons.html.twig') }}
+
+    </div>
+</div>

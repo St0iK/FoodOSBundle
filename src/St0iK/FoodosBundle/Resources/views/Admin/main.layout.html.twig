@@ -1,0 +1,16 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block container %}
+    <div class="container body">
+        <div class="main_container">
+            {{ include('@Foodos/Admin/_partials/left_col.html.twig') }}
+            {{ include('@Foodos/Admin/_partials/top_navigation.html.twig') }}
+            <!-- page content -->
+            <div class="right_col" role="main">
+                {% block main %}
+                {% endblock main %}
+                {{ include('@Foodos/Admin/_partials/footer.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock container %}
