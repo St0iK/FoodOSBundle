@@ -19,7 +19,7 @@ class Category
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Product", mappedBy="categories",fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Product", mappedBy="categories", fetch="EAGER")
      *
      */
     protected $products;
@@ -27,7 +27,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank
      */
     private $title;
@@ -35,7 +35,7 @@ class Category
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank
      */
     private $weight;
@@ -44,19 +44,19 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank
      * @Assert\Length(min=10)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $created;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
 
