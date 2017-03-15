@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    curl_http_adapter:
+        class: Ivory\HttpAdapter\CurlHttpAdapter
+
+    google_maps_geocoder:
+        class: Geocoder\Provider\GoogleMaps
+        arguments: ["@curl_http_adapter"]
+
+    form_serializer:
+        class: St0iK\FoodosBundle\Services\Utilities\FormErrorsSerializer
