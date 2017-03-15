@@ -3,6 +3,7 @@
 namespace St0iK\FoodosBundle\Controller\Admin;
 use St0iK\FoodosBundle\Entity\Category;
 use St0iK\FoodosBundle\Form\CategoryType;
+use St0iK\FoodosBundle\Services\Utilities\FormErrorsSerializer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -55,11 +56,13 @@ class DefaultController extends Controller
         }
 
         $response = new JsonResponse(
-                array(
-                    'message' => 'Error',
-                    'errors' => $form->getErrors()
-            ), 400);
+            array(
+                'message' => 'Error',
+                'errors' => $this->container->get('form_serializer')->serializeFormErrors($form)
+        ), 400);
 
         return $response;
     }
+
+
 }

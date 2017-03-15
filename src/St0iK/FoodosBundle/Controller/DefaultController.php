@@ -11,12 +11,15 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository('FoodosBundle:Category');
         $categories = $repository->findAllSortedByWeight();
         
-//        foreach ($categories as $category) {
-//            foreach ($category->getProducts() as $product) {
-//                echo "<br>".$product->getTitle();
-//            }
-//        }
-        exit;
+        foreach ($categories as $category) {
+            foreach ($category->getProducts() as $product) {
+                echo "<br>".$product->getTitle();
+            }
+        }
+
+        $geoCoder = $this->container->get('google_maps_geocoder');
+        $geocodedData = $geoCoder->geocode('14 Westpoint, LS14JJ');
+
         return $this->render('FoodosBundle:Default:index.html.twig');
     }
 }

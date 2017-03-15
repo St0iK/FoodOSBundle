@@ -24,7 +24,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "doctrine/doctrine-migrations-bundle": "^1.0",
-        "stof/doctrine-extensions-bundle": "^1.2"
+        "stof/doctrine-extensions-bundle": "^1.2",
+        "willdurand/geocoder": "^3.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
