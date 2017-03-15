@@ -17,5 +17,5 @@ composer.lock
 /.idea/foodos.iml
 /.idea/misc.xml
 /.idea/workspace.xml
-/node_module
+/node_modules
 .DS_Store
