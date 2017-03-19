@@ -34,31 +34,16 @@
 
         <div class="">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" id="cat-vue">
                     <div class="x_title">
                         <h2><i class="fa fa-bars"></i> Categories <small>Manage Categories</small></h2>
                         <div class="clearfix"></div>
                     </div>
 
                     <div class="x_content">
-                        <ul class="catalog-categories list-unstyled msg_list">
-                            <li><a data-toggle="modal" data-target=".bs-example-modal-lg">
-                                      <span><span>New Category</span></span>
-                                      <span class="message">Add a new category into the catalog</span>
-                                </a>
-                            </li>
-                            {% for category in categories %}
-                                <li>
-                                    <a>
-                                      <span>
-                                          <span>{{ category.title }}</span>
-                                          <span class="time">{{ category.products|length }}</span>
-                                      </span>
-                                        <span class="message">{{ category.description }}</span>
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+
+                            <category-list categoriesprop="{{ categories }}"></category-list>
+
 
                     </div>
                 </div>
@@ -80,6 +65,7 @@
 
         </div>
     </div>
+
 
     {{ include('@Foodos/Admin/_partials/category_modal.html.twig') }}
 

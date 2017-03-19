@@ -31,7 +31,7 @@ class DefaultController extends Controller
 
         return $this->render('@Foodos/Admin/Pages/catalog.html.twig',
             [
-                'categories' => $categories,
+                'categories' => json_encode($categories),
                 'form' => $form->createView()
             ]
         );
@@ -52,7 +52,12 @@ class DefaultController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return new JsonResponse(array('message' => 'Success!'), 200);
+            $serializer = $this->container->get('jms_serializer');
+
+            return new JsonResponse(array(
+                'message' => 'Success!',
+                'category' => $serializer->serialize($category, 'json')
+            ), 200);
         }
 
         $response = new JsonResponse(

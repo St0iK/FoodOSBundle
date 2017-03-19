@@ -11,6 +11,16 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Category
 {
+//    public function jsonSerialize() {
+//        return [
+//            'id' => $this->id,
+//            'title' => $this->title,
+//            'description' => $this->description,
+//            'created' => $this->created,
+//            'updated' => $this->updated,
+//            'products' => $this->getProducts(),
+//        ];
+//    }
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

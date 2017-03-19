@@ -11,7 +11,7 @@
                     <h4>Oh snap!</h4>
                     <p>This form seems to be invalid :(</p>
                 </div>
-                <form method="POST" class="ajaxCategoryAdd"   action="{{ path('foodos_backend_admin_ajax_category_add') }}" {{ form_enctype(form) }}>
+                <form method="POST" class="ajaxCategoryAdd" action="{{ path('foodos_backend_admin_ajax_category_add') }}" {{ form_enctype(form) }}>
                 {{ form_widget(form) }}
                 <div class="showErrors"></div>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
@@ -19,7 +19,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary"  id="save-new-category">Save</button>
+                <button type="submit" class="btn btn-primary"  id="save-new-category" v-on:click="saveCategory">Save</button>
             </div>
             {{ form_end(form) }}
 

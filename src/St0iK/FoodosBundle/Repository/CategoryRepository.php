@@ -28,8 +28,7 @@ class CategoryRepository extends EntityRepository
             ->orderBy('cat.weight')
             ->leftJoin('cat.products', 'pr')
             ->addSelect('pr')
-            ->getQuery()
-            ->execute();
+            ->getQuery()->getArrayResult();
     }
 
 }
