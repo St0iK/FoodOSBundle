@@ -8,9 +8,20 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $notify = $this->container->get('stoik.notify');
+        $notify->add("test", array("type" => "instant", "message" => "This is awesome"));
+
+        if ($notify->has("test")) {
+            $return = array("notifications" => $notify->get("test"));
+        }else{
+            $return =  array();
+        }
+
+        dump($return);
         $repository = $this->getDoctrine()->getRepository('FoodosBundle:Category');
         $categories = $repository->findAllSortedByWeight();
         
+<<<<<<< Updated upstream
         foreach ($categories as $category) {
             foreach ($category->getProducts() as $product) {
                 echo "<br>".$product->getTitle();
@@ -20,6 +31,14 @@ class DefaultController extends Controller
         $geoCoder = $this->container->get('google_maps_geocoder');
         $geocodedData = $geoCoder->geocode('14 Westpoint, LS14JJ');
 
+=======
+//        foreach ($categories as $category) {
+//            foreach ($category->getProducts() as $product) {
+//                echo "<br>".$product->getTitle();
+//            }
+//        }
+//        exit;
+>>>>>>> Stashed changes
         return $this->render('FoodosBundle:Default:index.html.twig');
     }
 }

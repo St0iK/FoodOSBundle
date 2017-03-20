@@ -1,3 +1,8 @@
+stoik_notification:
+    resource: "@StoikNotificationBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 foodos:
     resource: "@FoodosBundle/Resources/config/routing.yml"
     prefix:   /

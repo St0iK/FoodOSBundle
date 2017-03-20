@@ -1,0 +1,22 @@
+parameters:
+    stoik.notification.class: St0iK\NotificationBundle\Controller\NotificationController
+
+services:
+    stoik.notify:
+        class: "%stoik.notification.class%"
+        arguments:
+          session: '@session'
+          defaults:
+              message: %stoik.notify.message%
+              title: %stoik.notify.title%
+              class: %stoik.notify.class%
+              type: %stoik.notify.type%
+              lifetime: %stoik.notify.lifetime%
+              click_to_close: %stoik.notify.click_to_close%
+
+    stoik.twig.message_extension:
+        class: St0iK\NotificationBundle\Twig\NotificationExtension
+        arguments: ['@service_container']
+        tags:
+          - { name: twig.extension }
+

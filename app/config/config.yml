@@ -91,3 +91,8 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+
+stoik_notification:
+  click_to_close: true
+  lifetime: 5000
+  #add any of the nodes needed, not just these two

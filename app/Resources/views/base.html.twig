@@ -3,18 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>FoodOS</title>
+    <title>F</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     {% block stylesheets %}
         <link href="{{ asset('bundles/foodos/css/styles.css') }}" type="text/css" rel="stylesheet" />
         <link href="{{ asset('bundles/foodos/css/lumen-boostrap.css') }}" type="text/css" rel="stylesheet" />
     {% endblock %}
+    {{ notify_resources() }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="{{ asset('bundles/foodos/js/html5shiv.js') }}"></script>
     <script src="{{ asset('bundles/foodos/js/respond.min.js') }}"></script>
     <![endif]-->
+
 </head>
 <body>
 {% block navigation %}
