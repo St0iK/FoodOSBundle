@@ -13,9 +13,15 @@ class CategoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')
-            ->add('weight')
-            ->add('description');
+        $builder->add('title',null, array(
+                    'attr' => array('data-parsley-minlength'=>'3')
+            ))
+            ->add('weight',null, array(
+                'attr' => array(' data-parsley-type'=>'integer')
+            ))
+            ->add('description',null, array(
+                'attr' => array('data-parsley-minlength'=>'30')
+            ));
     }
     
     /**
