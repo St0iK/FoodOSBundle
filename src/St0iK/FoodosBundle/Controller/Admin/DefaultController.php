@@ -69,5 +69,11 @@ class DefaultController extends Controller
         return $response;
     }
 
+    public function ajaxCategoryEditAction(Request $request, $categoryId)
+    {
+        dump($categoryId);
+        exit;
+    }
+
 
 }

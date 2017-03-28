@@ -12,9 +12,13 @@ foodos_backend_admin_catalog:
     path: /backend/catalog
     defaults: { _controller: FoodosBundle:Admin/Default:catalog }
 
+foodos_backend_admin_ajax_category_edit:
+    path: /backend/catalog/ajaxCategoryEdit/{categoryId}
+
 foodos_backend_admin_ajax_category_add:
     path: /backend/catalog/ajaxCategoryAdd
     defaults: { _controller: FoodosBundle:Admin/Default:ajaxCategoryAdd }
+
 
 foodos_backend_login:
     path: /backend/login
