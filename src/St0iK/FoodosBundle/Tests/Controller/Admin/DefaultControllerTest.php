@@ -44,7 +44,7 @@ class DefaultControllerTest extends WebTestCase
     /**
      * Test Creating a New Category
      */
-    public function testAddNewCategory()
+    public function testAddNewCategoryAjaxRequest()
     {
         $title = $this->getRandomTitle();
         $weight = $this->getRandomInteger();
@@ -78,6 +78,45 @@ class DefaultControllerTest extends WebTestCase
 
     }
 
+    /**
+     * Tests that Update Category ajax call works
+     * It grabs the last inserted category
+     * and updates all its fields and then asserts that
+     * it was really updated
+     */
+    public function testEditCategoryAjax()
+    {
+        $title = $this->getRandomTitle();
+        $weight = $this->getRandomInteger();
+        $description = $this->getRandomDescription();
+        $category = $this->client->getContainer()->get('doctrine')->getRepository(Category::class)->getLastEntity();
+
+        $this->client->request('POST', '/backend/catalog/ajaxCategoryEdit/' . $category->getId(),
+            array(
+                'st0ik_foodosbundle_category' => array(
+                    'title' => $title,
+                    'weight' => $weight,
+                    'description' => $description
+                ),
+            ),
+            array(),
+            array(
+                'HTTP_X-Requested-With' => 'XMLHttpRequest',
+            ));
+        //  Assert Response Code
+        $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
+
+        $category = $this->client->getContainer()->get('doctrine')->getRepository(Category::class)->findOneBy([
+            'title' => $title,
+        ]);
+
+        // Assert entry Exists
+        $this->assertNotNull($category);
+
+        // Assert entry data
+        $this->assertSame($title, $category->getTitle());
+        $this->assertSame($weight, $category->getWeight());
+    }
     /**
      * Generates a random Sentence using Faker
      * @return mixed
