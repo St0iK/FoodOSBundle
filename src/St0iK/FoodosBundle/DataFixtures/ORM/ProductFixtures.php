@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM;
+namespace St0iK\FoodosBundle\DataFixtures\ORM;
 
 use St0iK\FoodosBundle\Entity\Product;
 use Doctrine\Common\DataFixtures\AbstractFixture;

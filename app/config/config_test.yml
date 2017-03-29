@@ -14,3 +14,16 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+
+doctrine:
+    dbal:
+        host:     localhost
+        dbname:   testdb
+        user:     root
+        password: root
+
+security:
+    firewalls:
+        admin_secured_area:
+            http_basic: ~
