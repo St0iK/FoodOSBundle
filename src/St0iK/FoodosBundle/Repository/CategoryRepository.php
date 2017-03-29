@@ -31,4 +31,17 @@ class CategoryRepository extends EntityRepository
             ->getQuery()->getArrayResult();
     }
 
+    /**
+     * Returns the last inserted category
+     * @return mixed
+     */
+    function getLastEntity()
+    {
+        return $this->createQueryBuilder('e')->
+        orderBy('e.created', 'DESC')->
+        setMaxResults(1)->
+        getQuery()->
+        getOneOrNullResult();
+    }
+
 }
