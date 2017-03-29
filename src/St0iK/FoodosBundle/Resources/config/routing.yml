@@ -2,8 +2,6 @@ foodos_homepage:
     path: /
     defaults: { _controller: FoodosBundle:Default:index }
 
-
-
 foodos_backend_admin_index:
     path: /backend
     defaults: { _controller: FoodosBundle:Admin/Default:index }
@@ -13,7 +11,10 @@ foodos_backend_admin_catalog:
     defaults: { _controller: FoodosBundle:Admin/Default:catalog }
 
 foodos_backend_admin_ajax_category_edit:
-    path: /backend/catalog/ajaxCategoryEdit/{categoryId}
+    path: /backend/catalog/ajaxCategoryEdit/{id}
+    defaults: { _controller: FoodosBundle:Admin/Default:ajaxCategoryEdit }
+    requirements:
+            page: '\d+'
 
 foodos_backend_admin_ajax_category_add:
     path: /backend/catalog/ajaxCategoryAdd

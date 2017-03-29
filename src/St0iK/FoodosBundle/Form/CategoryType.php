@@ -30,7 +30,8 @@ class CategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'St0iK\FoodosBundle\Entity\Category'
+            'data_class' => 'St0iK\FoodosBundle\Entity\Category',
+            'csrf_protection' => false
         ));
     }
 

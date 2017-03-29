@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 class DefaultController extends Controller
@@ -69,10 +70,33 @@ class DefaultController extends Controller
         return $response;
     }
 
-    public function ajaxCategoryEditAction(Request $request, $categoryId)
+    public function ajaxCategoryEditAction(Request $request, Category $category)
     {
-        dump($categoryId);
-        exit;
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $serializer = $this->container->get('jms_serializer');
+        $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager->flush();
+            return new JsonResponse(array(
+                'message' => 'Update Success!',
+                'category' => $serializer->serialize($category, 'json')
+            ), 200);
+        }
+
+        $response = new JsonResponse(
+            array('category' => $serializer->serialize($category, 'json')
+            ), 200);
+
+        return $response;
     }
 
 
