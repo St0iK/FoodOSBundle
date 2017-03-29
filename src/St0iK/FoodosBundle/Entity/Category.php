@@ -11,16 +11,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Category
 {
-//    public function jsonSerialize() {
-//        return [
-//            'id' => $this->id,
-//            'title' => $this->title,
-//            'description' => $this->description,
-//            'created' => $this->created,
-//            'updated' => $this->updated,
-//            'products' => $this->getProducts(),
-//        ];
-//    }
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -39,6 +29,7 @@ class Category
      *
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank
+     * * @Assert\Length(min=3)
      */
     private $title;
 
@@ -47,6 +38,7 @@ class Category
      *
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank
+     * @Assert\Type(type="integer")
      */
     private $weight;
 
@@ -56,7 +48,7 @@ class Category
      *
      * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank
-     * @Assert\Length(min=10)
+     * @Assert\Length(min=30)
      */
     private $description;
 
