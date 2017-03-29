@@ -1,5 +1,6 @@
 imports:
     - { resource: config_dev.yml }
+    - { resource: security_test.yml }
 
 framework:
     test: ~
@@ -22,8 +23,3 @@ doctrine:
         dbname:   testdb
         user:     root
         password: root
-
-security:
-    firewalls:
-        admin_secured_area:
-            http_basic: ~

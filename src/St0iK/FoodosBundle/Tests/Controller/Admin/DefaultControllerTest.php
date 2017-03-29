@@ -3,50 +3,106 @@
 namespace St0iK\FoodosBundle\Tests\Admin\Controller;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use St0iK\FoodosBundle\Entity\Category;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Response;
+use Faker;
 
 class DefaultControllerTest extends WebTestCase
 {
     private $client = null;
+    /**
+     * @var Faker $faker
+     */
+    private $faker = null;
 
     public function setUp()
     {
-        $classes = array(
-            'St0iK\FoodosBundle\DataFixtures\ORM\CategoryFixtures',
-            'St0iK\FoodosBundle\DataFixtures\ORM\ProductFixtures',
-            'St0iK\FoodosBundle\DataFixtures\ORM\UserFixtures',
-        );
-        //$this->loadFixtures($classes);
-
-        $this->client = static::createClient();
-    }
-
-    public function testBackend()
-    {
-        $client = static::createClient([], [
+        $this->client = static::createClient([], [
             'PHP_AUTH_USER' => 'stoik_admin',
             'PHP_AUTH_PW' => '123123123',
         ]);
-        $client->request('GET', '/backend');
 
-        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-        $this->assertContains('Catalog', $client->getResponse()->getContent());
+        $this->faker = Faker\Factory::create();
     }
 
-    private function logIn()
+    public function testItContainsManageCatalog()
     {
-        $session = $this->client->getContainer()->get('session');
+        $this->client->request('GET', '/backend/catalog');
+        $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
+        $this->assertContains('Manage Catalog', $this->client->getResponse()->getContent());
+    }
 
-        // the firewall context (defaults to the firewall name)
-        $firewall = 'admin_secured_area';
+    public function testItContainsAddNewCategoryLink()
+    {
+        $this->client->request('GET', '/backend/catalog');
+        $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
+        $this->assertContains('Category', $this->client->getResponse()->getContent());
+    }
 
-        $token = new UsernamePasswordToken('admin', null, $firewall, array('ROLE_ADMIN'));
-        $session->set('_security_'.$firewall, serialize($token));
-        $session->save();
+    /**
+     * Test Creating a New Category
+     */
+    public function testAddNewCategory()
+    {
+        $title = $this->getRandomTitle();
+        $weight = $this->getRandomInteger();
+        $description = $this->getRandomDescription();
 
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $this->client->request('POST', '/backend/catalog/ajaxCategoryAdd',
+            array(
+                'st0ik_foodosbundle_category' => array(
+                    'title' => $title,
+                    'weight' => $weight,
+                    'description' => $description
+                ),
+            ),
+            array(),
+            array(
+                'HTTP_X-Requested-With' => 'XMLHttpRequest',
+            ));
+        //  Assert Response Code
+        $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
+
+        $category = $this->client->getContainer()->get('doctrine')->getRepository(Category::class)->findOneBy([
+            'title' => $title,
+        ]);
+
+        // Assert entry Exists
+        $this->assertNotNull($category);
+
+        // Assert entry data
+        $this->assertSame($title, $category->getTitle());
+        $this->assertSame($weight, $category->getWeight());
+
+    }
+
+    /**
+     * Generates a random Sentence using Faker
+     * @return mixed
+     */
+    private function getRandomTitle()
+    {
+        return $this->faker->sentence();
+    }
+
+    /**
+     * Generates a random integer that is not null
+     * using Faker
+     * @return mixed
+     */
+    private function getRandomInteger()
+    {
+        return $this->faker->randomDigitNotNull();
+    }
+
+    /**
+     * Generates a random text using Faker
+     * @return mixed
+     */
+    private function getRandomDescription()
+    {
+        return $this->faker->text();
     }
 }

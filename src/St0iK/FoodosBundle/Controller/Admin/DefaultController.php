@@ -46,6 +46,7 @@ class DefaultController extends Controller
 
         $category = new Category();
         $form = $this->createForm(CategoryType::class,$category);
+        //print_r( $request->request->all());exit;
         $form->handleRequest($request);
 
         if ($form->isValid()) {

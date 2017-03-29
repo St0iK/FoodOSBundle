@@ -1,0 +1,4 @@
+security:
+    firewalls:
+        admin_secured_area:
+            http_basic: ~
