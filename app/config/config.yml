@@ -36,7 +36,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form:
-            resources: ['bootstrap_3_layout.html.twig']
+            resources: ['bootstrap_3_layout.html.twig','FoodosBundle:Form:widgets.html.twig']
 
 # Doctrine Configuration
 doctrine:
@@ -96,3 +96,11 @@ stoik_notification:
   click_to_close: true
   lifetime: 5000
   #add any of the nodes needed, not just these two
+
+ivory_google_map:
+    map:
+        api_key: "add-your-key-here"
+
+ivory_google_map:
+    map:
+        debug: "%kernel.debug%"

@@ -3,6 +3,7 @@
 namespace St0iK\FoodosBundle\Controller\Admin;
 use St0iK\FoodosBundle\Entity\Category;
 use St0iK\FoodosBundle\Form\CategoryType;
+use St0iK\FoodosBundle\Form\CoordinateType;
 use St0iK\FoodosBundle\Services\Utilities\FormErrorsSerializer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -30,10 +31,13 @@ class DefaultController extends Controller
 
         $form = $this->createForm(CategoryType::class);
 
+        $mapForm = $this->createForm(CoordinateType::class);
+
         return $this->render('@Foodos/Admin/Pages/catalog.html.twig',
             [
                 'categories' => json_encode($categories),
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'mapForm' => $mapForm->createView()
             ]
         );
     }
