@@ -1,5 +1,7 @@
 {% block coordinate_widget %}
+    {#{{ dump(map) }}#}
     {{ ivory_google_map(map) }}
     {{ ivory_google_api([map]) }}
-    {{ block('form_widget_simple') }}
+    {{ block('hidden_widget') }}
+    <div id="map_variable" style="display: none;">{{ map.variable }}</div>
 {% endblock %}

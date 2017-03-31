@@ -14,13 +14,20 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title',null, array(
-                    'attr' => array('data-parsley-minlength'=>'3')
+                    'attr' => array(
+                        'data-parsley-minlength'=>'3'
+                    )
             ))
+            ->add('map',CoordinateType::class)
             ->add('weight',null, array(
-                'attr' => array(' data-parsley-type'=>'integer')
+                'attr' => array('
+                    data-parsley-type'=>'integer'
+                )
             ))
             ->add('description',null, array(
-                'attr' => array('data-parsley-minlength'=>'30')
+                'attr' => array(
+                    'data-parsley-minlength'=>'30'
+                )
             ));
     }
     
@@ -31,7 +38,7 @@ class CategoryType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'St0iK\FoodosBundle\Entity\Category',
-            'csrf_protection' => false
+            'csrf_protection' => false // fix this
         ));
     }
 
