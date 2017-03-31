@@ -18,7 +18,9 @@ class CategoryType extends AbstractType
                         'data-parsley-minlength'=>'3'
                     )
             ))
-            ->add('map',CoordinateType::class)
+            ->add('map',CoordinateType::class,
+                array('mapped' => false)
+            )
             ->add('weight',null, array(
                 'attr' => array('
                     data-parsley-type'=>'integer'
