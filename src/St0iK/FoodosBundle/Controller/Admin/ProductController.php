@@ -2,7 +2,9 @@
 
 namespace St0iK\FoodosBundle\Controller\Admin;
 use St0iK\FoodosBundle\Entity\Category;
+use St0iK\FoodosBundle\Entity\Ingredient;
 use St0iK\FoodosBundle\Entity\Product;
+use St0iK\FoodosBundle\Entity\ProductIngredients;
 use St0iK\FoodosBundle\Form\CategoryType;
 use St0iK\FoodosBundle\Form\CoordinateType;
 use St0iK\FoodosBundle\Form\ProductType;
@@ -25,7 +27,16 @@ class ProductController extends Controller
         /* @var \St0iK\FoodosBundle\Repository\CategoryRepository $categoryRepository*/
         $productRepository = $entityManager->getRepository(Product::class);
         $products = $productRepository->findAll();
-        $form = $this->createForm(ProductType::class);
+
+        $product = new Product();
+        $ingredient_1 = new Ingredient();
+        $ingredient_1->setTitle('Ingredient 1');
+        $ingredient_1->setDescription('Lorem ipsum and some other stuff for the description');
+        $product->setIngredients($ingredient_1);
+
+
+
+        $form = $this->createForm(ProductType::class,$product);
 
         return $this->render('@Foodos/Admin/Pages/product.html.twig',
             [

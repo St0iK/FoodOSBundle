@@ -20,7 +20,6 @@ class Category
 
     /**
      * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Product", mappedBy="categories")
-     *
      */
     protected $products;
 
@@ -29,7 +28,7 @@ class Category
      *
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank
-     * * @Assert\Length(min=3)
+     * @Assert\Length(min=3)
      */
     private $title;
 
@@ -213,6 +212,10 @@ class Category
     public function addProduct(\St0iK\FoodosBundle\Entity\Product $product)
     {
         $this->products[] = $product;
+        /**
+         * Booya! Setting the Owning Side of the relationship
+         */
+        $product->addCategory($this);
 
         return $this;
     }
@@ -224,7 +227,12 @@ class Category
      */
     public function removeProduct(\St0iK\FoodosBundle\Entity\Product $product)
     {
+        // if it doesnt already exist. We dont need it. skip
+        if(!$this->products->contains($product)){
+            return;
+        }
         $this->products->removeElement($product);
+        $product->removeCategory($this);
     }
 
     /**

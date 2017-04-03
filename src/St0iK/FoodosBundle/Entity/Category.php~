@@ -19,7 +19,7 @@ class Category
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Product", inversedBy="category",fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="St0iK\FoodosBundle\Entity\Product", mappedBy="categories")
      *
      */
     protected $products;
@@ -27,16 +27,18 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank
+     * @Assert\Length(min=3)
      */
     private $title;
 
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank
+     * @Assert\Type(type="integer")
      */
     private $weight;
 
@@ -44,19 +46,19 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank
-     * @Assert\Length(min=10)
+     * @Assert\Length(min=30)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $created;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
 
@@ -211,6 +213,10 @@ class Category
     public function addProduct(\St0iK\FoodosBundle\Entity\Product $product)
     {
         $this->products[] = $product;
+        /**
+         * Booya! Setting the Owning Side of the relationship
+         */
+        $product->addCategory($this);
 
         return $this;
     }
@@ -222,7 +228,12 @@ class Category
      */
     public function removeProduct(\St0iK\FoodosBundle\Entity\Product $product)
     {
+        // if it doesnt already exist. We dont need it. skip
+        if(!$this->products->contains($product)){
+            return;
+        }
         $this->products->removeElement($product);
+        $product->removeCategory($this);
     }
 
     /**
@@ -233,5 +244,10 @@ class Category
     public function getProducts()
     {
         return $this->products;
+    }
+
+    function __toString()
+    {
+        return $this->title;
     }
 }

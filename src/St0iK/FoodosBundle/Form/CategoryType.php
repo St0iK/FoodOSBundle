@@ -35,7 +35,8 @@ class CategoryType extends AbstractType
                 'class' => Product::class,
                 'choice_label' => 'title',
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'by_reference' => false
             ));
 
     }

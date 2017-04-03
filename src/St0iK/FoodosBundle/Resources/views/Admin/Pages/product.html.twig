@@ -46,7 +46,12 @@
                             {% endfor %}
                         </div>
 
-                        {{ form(form) }}
+                        {{ form_start(form) }}
+
+                        {% for ingredient in form.ingredients %}
+                            <li>{{ form_row(ingredient.title) }}</li>
+                        {% endfor %}
+                        {{ form_end(form) }}
                     </div>
                 </div>
             </div>

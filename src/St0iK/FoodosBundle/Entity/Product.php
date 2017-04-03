@@ -30,6 +30,11 @@ class Product
     protected $categories;
 
     /**
+     * @ORM\OneToMany(targetEntity="St0iK\FoodosBundle\Entity\ProductIngredients", mappedBy="ingredient")
+     */
+    protected $ingredients;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
@@ -73,8 +78,25 @@ class Product
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
+
+    /**
+     * @param mixed $ingredients
+     */
+    public function setIngredients($ingredients)
+    {
+        $this->ingredients[] = $ingredients;
     }
 
 
@@ -239,27 +261,50 @@ class Product
     /**
      * Add categories
      *
-     * @param \St0iK\FoodosBundle\Entity\Category $categories
+     * @param \St0iK\FoodosBundle\Entity\Category $category
      * @return Product
      */
-    public function addCategory(\St0iK\FoodosBundle\Entity\Category $categories)
+    public function addCategory(\St0iK\FoodosBundle\Entity\Category $category)
     {
-        if($this->categories->contains($categories)){
+        if($this->categories->contains($category)){
             return;
         }
-        $this->categories[] = $categories;
+        $this->categories[] = $category;
+        // This is not needed for persistance
+        // Can save us on some edge cases. That During the same request
+        // We set a Product to a Category and then we to a getProducts on a category
+        // Makes sure that both sides of the relationship stay synchronised
+        $category->addProduct($this);
+        return $this;
+    }
 
+
+    public function addIgredient(\St0iK\FoodosBundle\Entity\Ingredient $ingredient)
+    {
+        if($this->ingredients->contains($ingredient)){
+            return;
+        }
+        $this->ingredients[] = $ingredient;
+        // This is not needed for persistance
+        // Can save us on some edge cases. That During the same request
+        // We set a Product to a Category and then we to a getProducts on a category
+        // Makes sure that both sides of the relationship stay synchronised
+//        $ingredient->addProduct($this);
         return $this;
     }
 
     /**
      * Remove categories
      *
-     * @param \St0iK\FoodosBundle\Entity\Category $categories
+     * @param \St0iK\FoodosBundle\Entity\Category $category
      */
-    public function removeCategory(\St0iK\FoodosBundle\Entity\Category $categories)
+    public function removeCategory(\St0iK\FoodosBundle\Entity\Category $category)
     {
-        $this->categories->removeElement($categories);
+        if(!$this->categories->contains($category)){
+            return;
+        }
+        $this->categories->removeElement($category);
+        $category->removeProduct($this);
     }
 
     /**

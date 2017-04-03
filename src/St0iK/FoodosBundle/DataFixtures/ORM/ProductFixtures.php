@@ -27,6 +27,7 @@ class ProductFixtures extends AbstractFixture implements ContainerAwareInterface
         $classicProduct->setWeight(1);
         $classicProduct->setPrice(10);
         $classicProduct->addCategory($this->getReference('burger-category'));
+        $this->addReference('classic-burger', $classicProduct);
         $manager->persist($classicProduct);
 
         $cheeseProduct = new Product();
@@ -35,6 +36,7 @@ class ProductFixtures extends AbstractFixture implements ContainerAwareInterface
         $cheeseProduct->setWeight(1);
         $cheeseProduct->setPrice(12);
         $cheeseProduct->addCategory($this->getReference('burger-category'));
+        $this->addReference('cheese-burger', $cheeseProduct);
         $manager->persist($cheeseProduct);
 
         $baconProduct = new Product();
@@ -43,6 +45,7 @@ class ProductFixtures extends AbstractFixture implements ContainerAwareInterface
         $baconProduct->setWeight(1);
         $baconProduct->setPrice(13);
         $baconProduct->addCategory($this->getReference('burger-category'));
+        $this->addReference('peanut-burger', $baconProduct);
         $manager->persist($baconProduct);
 
         $manager->flush();
