@@ -236,4 +236,9 @@ class Category
     {
         return $this->products;
     }
+
+    function __toString()
+    {
+        return $this->title;
+    }
 }

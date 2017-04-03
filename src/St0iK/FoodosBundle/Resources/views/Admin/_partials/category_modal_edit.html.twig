@@ -1,5 +1,4 @@
-<div class="edit-modal modal fade in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg">
+ <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
@@ -7,26 +6,13 @@
                 <h4 class="modal-title" id="myModalLabel">Update Category</h4>
             </div>
             <div class="modal-body">
-                <form class="ajaxCategoryEdit">
-                <div id="st0ik_foodosbundle_category_edit">
-                    <div class="form-group">
-                        <label for="st0ik_foodosbundle_category_title" class="control-label required">Title</label>
-                        <input type="text" id="st0ik_edit_foodosbundle_category_title" name="st0ik_foodosbundle_category[title]" required="required" data-parsley-minlength="3" class="form-control">
+                <form class="ajaxCategoryEdit" action="{{ path('foodos_backend_admin_ajax_category_edit', {'id': category.id}) }}">
+                    <div id="st0ik_foodosbundle_category_edit">
+                        {{ form_widget(form) }}
                     </div>
-                    <div class="form-group">
-                        <label for="st0ik_foodosbundle_category_weight" class="control-label required">Weight</label>
-                        <input type="number" id="st0ik_edit_foodosbundle_category_weight" name="st0ik_foodosbundle_category[weight]" required="required" data-parsley-type="integer" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="st0ik_foodosbundle_category_description" class="control-label required">Description</label>
-                        <textarea id="st0ik_edit_foodosbundle_category_description" name="st0ik_foodosbundle_category[description]" required="required" pattern=".{10,}" data-parsley-minlength="30" class="form-control"></textarea>
-                    </div>
-                </div>
-                    {#<input type="hidden" id="st0ik_edit_foodosbundle_category__token" name="st0ik_foodosbundle_category[_token]" value="{{ csrf_token("task_item_intention") }}">#}
-
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer ">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary"  id="save-new-category" v-on:click="categoryEditSubmit">
                     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display:none;"></span> Save</button>
@@ -35,4 +21,3 @@
 
         </div>
     </div>
-</div>

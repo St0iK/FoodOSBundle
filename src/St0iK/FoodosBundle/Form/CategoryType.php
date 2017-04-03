@@ -2,6 +2,8 @@
 
 namespace St0iK\FoodosBundle\Form;
 
+use St0iK\FoodosBundle\Entity\Product;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,9 +20,6 @@ class CategoryType extends AbstractType
                         'data-parsley-minlength'=>'3'
                     )
             ))
-            ->add('map',CoordinateType::class,
-                array('mapped' => false)
-            )
             ->add('weight',null, array(
                 'attr' => array('
                     data-parsley-type'=>'integer'
@@ -30,7 +29,15 @@ class CategoryType extends AbstractType
                 'attr' => array(
                     'data-parsley-minlength'=>'30'
                 )
+            ))
+            ->add('products',EntityType::class,array(
+                'placeholder' => 'Assign Products to this category',
+                'class' => Product::class,
+                'choice_label' => 'title',
+                'multiple' => true,
+                'expanded' => true
             ));
+
     }
     
     /**

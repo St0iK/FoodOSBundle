@@ -244,6 +244,9 @@ class Product
      */
     public function addCategory(\St0iK\FoodosBundle\Entity\Category $categories)
     {
+        if($this->categories->contains($categories)){
+            return;
+        }
         $this->categories[] = $categories;
 
         return $this;

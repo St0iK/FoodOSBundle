@@ -10,6 +10,10 @@ foodos_backend_admin_catalog:
     path: /backend/catalog
     defaults: { _controller: FoodosBundle:Admin/Default:catalog }
 
+foodos_backend_admin_product:
+    path: /backend/product
+    defaults: { _controller: FoodosBundle:Admin/Product:index }
+
 foodos_backend_admin_ajax_category_edit:
     path: /backend/catalog/ajaxCategoryEdit/{id}
     defaults: { _controller: FoodosBundle:Admin/Default:ajaxCategoryEdit }

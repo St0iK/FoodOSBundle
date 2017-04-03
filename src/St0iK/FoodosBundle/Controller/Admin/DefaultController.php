@@ -31,13 +31,11 @@ class DefaultController extends Controller
 
         $form = $this->createForm(CategoryType::class);
 
-        $mapForm = $this->createForm(CoordinateType::class);
 
         return $this->render('@Foodos/Admin/Pages/catalog.html.twig',
             [
                 'categories' => json_encode($categories),
-                'form' => $form->createView(),
-                'mapForm' => $mapForm->createView()
+                'form' => $form->createView()
             ]
         );
     }
@@ -50,7 +48,7 @@ class DefaultController extends Controller
 
         $category = new Category();
         $form = $this->createForm(CategoryType::class,$category);
-        //print_r( $request->request->all());exit;
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -98,7 +96,12 @@ class DefaultController extends Controller
         }
 
         $response = new JsonResponse(
-            array('category' => $serializer->serialize($category, 'json')
+            array(
+                'template' => $this->renderView('@Foodos/Admin/_partials/category_modal_edit.html.twig',
+                    [
+                        'form' => $form->createView(),
+                        'category' => $category
+                    ])
             ), 200);
 
         return $response;

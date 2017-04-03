@@ -15,7 +15,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Manage Catalog</h3>
+                <h3>Manage Product</h3>
             </div>
 
             <div class="title_right">
@@ -33,41 +33,27 @@
         <div class="clearfix"></div>
 
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" id="cat-vue">
                     <div class="x_title">
-                        <h2><i class="fa fa-bars"></i> Categories <small>Manage Categories</small></h2>
+                        <h2><i class="fa fa-bars"></i> Products <small>Manage Products</small></h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <category-list categoriesprop="{{ categories }}"></category-list>
+                        <div class="product-list">
+                            {% for product  in products %}
+                                <li>{{ product.title|e }}</li>
+                            {% endfor %}
+                        </div>
+
+                        {{ form(form) }}
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2><i class="fa fa-bars"></i> Tabs <small>Float left</small></h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        Test content
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     </div>
-
-    <div class="">
-        {{ include('@Foodos/Admin/_partials/category_modal.html.twig') }}
-        <div class="edit-modal modal fade in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-
-        </div>
-    </div>
-
-
 
 {% endblock main %}
 
